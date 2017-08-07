@@ -24,11 +24,9 @@ io.on('connection', function(socket) {
         //将消息输出到控制台
         // console.log(data);
         //发送信息
-        var timestamp=new Date().getTime();
-        io.sockets.emit('return', data);
+        var timestamp=new Date().getTime();//获取聊天时间
+        io.sockets.emit('return', data);//发送信息到页面
         
-        //console.log('INSERT INTO node_talk (talk, time,user) VALUES ('+'"'+data+'"'+', '+timestamp+',"user")');
-
         connectionsql.query('INSERT INTO node_talk (talk, time,user) VALUES ('+'"'+data+'"'+', '+timestamp+',"user")');//保存聊天数据
 
 

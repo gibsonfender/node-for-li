@@ -3,6 +3,7 @@
 <!-- <script src="./socket.io/lib/socket.js"></script> -->
 <script src="./socket.io-client/dist/socket.io.js"></script>
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+<script src="./localjs/jquery.cookie.js"></script>
 <style type="text/css">
 .left{height: 20px;
     margin-bottom: 0;
@@ -10,6 +11,16 @@
 .right{float: right}
 </style>
 <script type="text/javascript">
+
+    if ($.cookie("username")) {
+        alert('this name');
+    }else{
+        alert('u need set new name');
+    };
+
+
+
+
 	var socket=io.connect();//与服务器进行连接
 		function add(){
             var val = $('#talk').val();
