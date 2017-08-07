@@ -2,18 +2,26 @@
 <head>
 <!-- <script src="./socket.io/lib/socket.js"></script> -->
 <script src="./socket.io-client/dist/socket.io.js"></script>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+<style type="text/css">
+.left{height: 20px;
+    margin-bottom: 0;
+    margin-top: 0;}
+.right{float: right}
+</style>
 <script type="text/javascript">
 	var socket=io.connect();//与服务器进行连接
 		function add(){
-			socket.emit('foo', 'hello');//发送一个名为foo的事件，并且传递一个字符串数据‘hello’
+            var val = $('#talk').val();
+			socket.emit('foo', val);//发送一个名为foo的事件，并且传递一个字符串数据‘hello’
+            $('#talk').val() = '';
 		}
 
 
     //接收并处理客户端发送的foo事件
     socket.on('return', function(data) {
         //将消息输出到控制台
-        console.log(data);
-        alert(data);
+        $("#TalkBox").append("<p class='left'>"+data+"</p><br/>");
         //发送信息
 
     })
@@ -22,8 +30,10 @@
 </script>
 </head>
 <body>
-<div style="height:500px;width:500px;"></div>
-<input type="text">
+<div style="height:500px;width:500px;overflow: auto;" id="TalkBox">
+
+</div>
+<input type="text" id="talk">
 <button onclick="add()">提交</button>
 </body>
 </html>
