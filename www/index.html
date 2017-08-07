@@ -14,7 +14,7 @@
 		function add(){
             var val = $('#talk').val();
 			socket.emit('foo', val);//发送一个名为foo的事件，并且传递一个字符串数据‘hello’
-            $('#talk').val() = '';
+            $('#talk').value  = '';
 		}
 
 

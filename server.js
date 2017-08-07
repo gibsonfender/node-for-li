@@ -1,14 +1,14 @@
 var express = require('express');
 var mysql = require('mysql');  
 
-var connection = mysql.createConnection({
+var connectionsql = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : '123456',
   database : 'test'
 });
 
-connection.connect();//连接数据库
+connectionsql.connect();//连接数据库
 
 
 app = express(),
@@ -29,10 +29,7 @@ io.on('connection', function(socket) {
         
         //console.log('INSERT INTO node_talk (talk, time,user) VALUES ('+'"'+data+'"'+', '+timestamp+',"user")');
 
-        connection.query('INSERT INTO node_talk (talk, time,user) VALUES ('+'"'+data+'"'+', '+timestamp+',"user")', function (error, results, fields) {
-            if (error) throw error;
-              console.log('The solution is: ', results[0].solution);
-            });//保存聊天数据
+        connectionsql.query('INSERT INTO node_talk (talk, time,user) VALUES ('+'"'+data+'"'+', '+timestamp+',"user")');//保存聊天数据
 
 
 
